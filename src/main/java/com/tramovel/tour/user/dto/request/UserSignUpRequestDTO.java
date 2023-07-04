@@ -23,8 +23,8 @@ public class UserSignUpRequestDTO {
 
   private String nick;
 
-  @Email
   @NotBlank
+  @Email
   private String email;
 
   public void setPw(String pw) {
@@ -37,6 +37,7 @@ public class UserSignUpRequestDTO {
       .pw(this.pw)
       .name(this.name)
       .nick(this.nick)
+      .email(this.email)
       .profileImg(uploadedFilePath)
       .build();
   }

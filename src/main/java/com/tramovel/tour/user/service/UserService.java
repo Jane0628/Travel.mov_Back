@@ -41,7 +41,7 @@ public class UserService {
 
     User user = dto.toEntity(uploadedFilePath);
 
-    User saved = userRepository.save(user);
+    userRepository.save(user);
 
   }
 
