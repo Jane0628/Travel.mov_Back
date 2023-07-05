@@ -42,7 +42,7 @@ public class WebSecurityConfig {
       .and()
       //어떤 요청에서 인증을 안 할 것인지 설정, 언제 할 것인지 설정
       .authorizeRequests()
-      .antMatchers("/", "/api/auth/**").permitAll()
+      .antMatchers("/", "/user/**").permitAll()
       .anyRequest().authenticated();
 
     // 토큰 인증 필터 연결
