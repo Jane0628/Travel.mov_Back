@@ -22,7 +22,7 @@ public class UserService {
   private final UserRepository userRepository;
   private final PasswordEncoder encoder;
 
-  @Value("${upload.path")
+  @Value("${upload.path}")
   private String uploadRootPath;
 
   public void signup(final UserSignUpRequestDTO dto, String uploadedFilePath) throws RuntimeException {
