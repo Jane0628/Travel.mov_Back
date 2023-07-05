@@ -2,6 +2,7 @@ package com.tramovel.tour.user.service;
 
 import com.tramovel.tour.auth.TokenProvider;
 import com.tramovel.tour.user.dto.request.UserLoginRequestDTO;
+import com.tramovel.tour.user.dto.request.UserModifyRequestDTO;
 import com.tramovel.tour.user.dto.request.UserSignUpRequestDTO;
 import com.tramovel.tour.user.dto.response.UserLoginResponseDTO;
 import com.tramovel.tour.user.entity.User;
@@ -66,9 +67,9 @@ public class UserService {
 
     // ID로 회원 정보를 조회.
     User user = userRepository.findById(dto.getId())
-            .orElseThrow(
-                    () -> new RuntimeException("가입된 회원이 아닙니다!")
-            );
+      .orElseThrow(
+        () -> new RuntimeException("가입된 회원이 아닙니다!")
+      );
 
     //패스워드 검증
     String rawPassword = dto.getPw(); // 사용자가 입력한 비번
@@ -88,12 +89,31 @@ public class UserService {
     }
 
 
+  public void modify(UserModifyRequestDTO dto, String profileImg) {
 
+    User user = userRepository.findById(dto.getId()).orElseThrow(
+      () -> new RuntimeException("회원 정보가 없습니다.")
+    );
 
+    //기존 이미지 지우기
+    File file = new File(uploadRootPath+ "/" + user.getProfileImg());
+    if(file.exists()) {
+      if(file.delete()) {
+        log.info("삭제 성공");
+      } else {
+        log.info("삭제 실패");
+      }
+    }
 
+    dto.setPw(encoder.encode(dto.getPw()));
+    user.setPw(dto.getPw());
+    user.setNick(dto.getNick());
+    user.setEmail(dto.getEmail());
+    user.setProfileImg(profileImg);
 
-
+    userRepository.save(user);
 
   }
+}
 
 

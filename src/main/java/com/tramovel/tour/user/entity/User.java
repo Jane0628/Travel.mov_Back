@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
-@Getter
+@Getter @Setter
 @ToString @EqualsAndHashCode(of = "id")
 @NoArgsConstructor @AllArgsConstructor
 @Builder
