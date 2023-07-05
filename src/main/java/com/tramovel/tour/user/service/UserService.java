@@ -1,6 +1,9 @@
 package com.tramovel.tour.user.service;
 
+import com.tramovel.tour.auth.TokenProvider;
+import com.tramovel.tour.user.dto.request.UserLoginRequestDTO;
 import com.tramovel.tour.user.dto.request.UserSignUpRequestDTO;
+import com.tramovel.tour.user.dto.response.UserLoginResponseDTO;
 import com.tramovel.tour.user.entity.User;
 import com.tramovel.tour.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +24,7 @@ public class UserService {
 
   private final UserRepository userRepository;
   private final PasswordEncoder encoder;
+  private final TokenProvider tokenProvider;
 
   @Value("${upload.path}")
   private String uploadRootPath;
@@ -57,4 +61,39 @@ public class UserService {
     return uuid;
   }
 
-}
+  //회원 인증
+  public UserLoginResponseDTO authenticate(final UserLoginRequestDTO dto) {
+
+    // ID로 회원 정보를 조회.
+    User user = userRepository.findById(dto.getId())
+            .orElseThrow(
+                    () -> new RuntimeException("가입된 회원이 아닙니다!")
+            );
+
+    //패스워드 검증
+    String rawPassword = dto.getPw(); // 사용자가 입력한 비번
+    String encodedPassword = user.getPw(); // DB에 저장된 비번
+
+    if (!encoder.matches(rawPassword, encodedPassword)) {
+      throw new RuntimeException("비밀번호가 틀렸습니다.");
+    }
+
+    log.info("{}님 로그인 성공!", user.getName());
+
+    //로그인 성공 후에 클라이언트에게 JWT를 발급(리턴)
+    String token = tokenProvider.createToken(user);//tokenprovier에게 user에관한 토큰 요청
+
+    return new UserLoginResponseDTO(user, token); //user, token 을 loginresponseDTO에 전달.
+
+    }
+
+
+
+
+
+
+
+
+  }
+
+

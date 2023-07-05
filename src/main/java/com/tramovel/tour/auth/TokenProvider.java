@@ -52,7 +52,7 @@ public class TokenProvider {
       .parseClaimsJws(token)
       .getBody();
 
-    log.info("Clainms : {}", claims);
+    log.info("Claims : {}", claims);
 
     return TokenUserInfo.builder()
       .id(claims.getSubject())
