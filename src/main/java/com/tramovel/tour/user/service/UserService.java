@@ -135,4 +135,8 @@ public class UserService {
     //회원 탈퇴
     userRepository.deleteById(dto.getId());
   }
+
+  public boolean isDuplicate(String id) {
+    return userRepository.existsById(id);
+  }
 }
