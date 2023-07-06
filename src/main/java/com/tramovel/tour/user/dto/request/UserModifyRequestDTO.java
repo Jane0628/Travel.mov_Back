@@ -4,6 +4,7 @@ import com.tramovel.tour.user.entity.User;
 import lombok.*;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @ToString @EqualsAndHashCode
@@ -11,6 +12,7 @@ import javax.validation.constraints.Email;
 @Builder
 public class UserModifyRequestDTO {
 
+  @NotBlank
   private String id;
   private String pw;
   private String nick;
