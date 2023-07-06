@@ -1,6 +1,7 @@
 package com.tramovel.tour.user.service;
 
 import com.tramovel.tour.auth.TokenProvider;
+import com.tramovel.tour.user.dto.request.UserDeleteRequestDTO;
 import com.tramovel.tour.user.dto.request.UserLoginRequestDTO;
 import com.tramovel.tour.user.dto.request.UserModifyRequestDTO;
 import com.tramovel.tour.user.dto.request.UserSignUpRequestDTO;
@@ -96,7 +97,7 @@ public class UserService {
     );
 
     //기존 이미지 지우기
-    File file = new File(uploadRootPath+ "/" + user.getProfileImg());
+    File file = new File(uploadRootPath + "/" + user.getProfileImg());
     if(file.exists()) {
       if(file.delete()) {
         log.info("삭제 성공");
@@ -105,6 +106,7 @@ public class UserService {
       }
     }
 
+    //회원 정보 수정
     dto.setPw(encoder.encode(dto.getPw()));
     user.setPw(dto.getPw());
     user.setNick(dto.getNick());
@@ -114,6 +116,23 @@ public class UserService {
     userRepository.save(user);
 
   }
+
+  public void delete(UserDeleteRequestDTO dto) {
+    User user = userRepository.findById(dto.getId()).orElseThrow(
+      () -> new RuntimeException("가입된 회원이 아닙니다!")
+    );
+
+    //이미지 지우기
+    File file = new File(uploadRootPath + "/" + user.getProfileImg());
+    if(file.exists()) {
+      if (file.delete()) {
+        log.info("삭제 성공");
+      } else {
+        log.info("삭제 실패");
+      }
+    }
+
+    //회원 탈퇴
+    userRepository.deleteById(dto.getId());
+  }
 }
-
-
