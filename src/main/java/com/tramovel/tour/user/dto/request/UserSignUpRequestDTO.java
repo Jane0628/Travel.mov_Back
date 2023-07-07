@@ -19,8 +19,6 @@ public class UserSignUpRequestDTO {
   private String pw;
 
   @NotBlank
-  private String name;
-
   private String nick;
 
   @NotBlank
@@ -35,7 +33,6 @@ public class UserSignUpRequestDTO {
     return User.builder()
       .id(this.id)
       .pw(this.pw)
-      .name(this.name)
       .nick(this.nick)
       .email(this.email)
       .profileImg(uploadedFilePath)

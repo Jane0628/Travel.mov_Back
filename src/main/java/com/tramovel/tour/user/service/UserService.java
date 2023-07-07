@@ -80,7 +80,7 @@ public class UserService {
       throw new RuntimeException("비밀번호가 틀렸습니다.");
     }
 
-    log.info("{}님 로그인 성공!", user.getName());
+    log.info("{}님 로그인 성공!", user.getNick());
 
     //로그인 성공 후에 클라이언트에게 JWT를 발급(리턴)
     String token = tokenProvider.createToken(user);//tokenprovier에게 user에관한 토큰 요청

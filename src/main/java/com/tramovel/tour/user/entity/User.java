@@ -24,9 +24,6 @@ public class User {
   @Column(nullable = false, name = "user_pw")
   private String pw;
 
-  @Column(nullable = false, name = "user_name")
-  private String name;
-
   @Column(nullable = false, name = "user_nick")
   private String nick;
 

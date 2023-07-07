@@ -29,8 +29,8 @@ public class UserController {
   //회원가입
   @PostMapping
   public void signup(
-    @Validated @RequestPart("user") UserSignUpRequestDTO dto,
-    @RequestPart(value = "profileImage", required = false) MultipartFile profileImg,
+    @Validated @RequestBody UserSignUpRequestDTO dto,
+//    @RequestPart(value = "profileImage", required = false) MultipartFile profileImg,
     BindingResult result
   ) {
 
@@ -40,20 +40,21 @@ public class UserController {
         log.warn("invalid client data - {}", err.toString());
       });
 
+      // 회원가입시 프로필 사진 받는거 잠시 보류함
 //      return ResponseEntity
 //        .badRequest()
 //        .body(fieldErrors);
     }
 
-    try {
-      String uploadedFilePath = null;
-      if(profileImg != null) {
-        uploadedFilePath = userService.uploadProfileImage(profileImg);
-      }
-      userService.signup(dto, uploadedFilePath);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+//    try {
+//      String uploadedFilePath = null;
+//      if(profileImg != null) {
+//        uploadedFilePath = userService.uploadProfileImage(profileImg);
+//      }
+      userService.signup(dto, "");
+//    } catch (IOException e) {
+//      throw new RuntimeException(e);
+//    }
 
   }
 
