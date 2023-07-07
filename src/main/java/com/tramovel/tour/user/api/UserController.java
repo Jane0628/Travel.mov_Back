@@ -40,7 +40,7 @@ public class UserController {
         log.warn("invalid client data - {}", err.toString());
       });
 
-      // 회원가입시 프로필 사진 받는거 잠시 보류
+      // 회원가입시 프로필 사진 받는거 잠시 보류함
 //      return ResponseEntity
 //        .badRequest()
 //        .body(fieldErrors);
