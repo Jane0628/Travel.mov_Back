@@ -26,7 +26,6 @@ public class UserLoginResponseDTO {
   public UserLoginResponseDTO(User user, String token) {
     this.id = user.getId();
     this.email = user.getEmail();
-    this.name = user.getName();
     this.nick = user.getNick();
     this.joinDate = LocalDate.from(user.getJoinDate());
     this.token = token;
