@@ -26,6 +26,7 @@ public class UserController {
   @Autowired
   private UserService userService;
 
+  //회원가입
   @PostMapping
   public void signup(
     @Validated @RequestPart("user") UserSignUpRequestDTO dto,
@@ -55,6 +56,19 @@ public class UserController {
     }
 
   }
+
+  //아이디 중복 확인 요청처리
+  @GetMapping("/check")
+  public ResponseEntity<?> check(String id) {
+    if(id.equals("")) {
+      return ResponseEntity.badRequest()
+              .body("아이디가 없습니다!");
+    }
+    boolean result = userService.isDuplicate(id); // 중복되었니?
+
+    return ResponseEntity.ok().body(result);
+  }
+
 
   //로그인 요청 처리
   @PostMapping("/signin")
