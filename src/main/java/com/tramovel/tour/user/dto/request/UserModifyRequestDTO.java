@@ -1,6 +1,5 @@
 package com.tramovel.tour.user.dto.request;
 
-import com.tramovel.tour.user.entity.User;
 import lombok.*;
 
 import javax.validation.constraints.Email;

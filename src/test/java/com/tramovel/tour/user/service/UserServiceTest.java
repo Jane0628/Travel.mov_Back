@@ -26,7 +26,6 @@ class UserServiceTest {
       .nick("기모찌")
       .pw("1q2w3e4r!")
       .id("abc1234")
-      .name("김옥지")
       .email("abc1234@naver.com")
       .build();
       //when

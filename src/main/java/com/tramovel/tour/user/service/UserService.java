@@ -38,11 +38,6 @@ public class UserService {
       throw new RuntimeException("중복된 아이디 입니다.");
     }
 
-    if(userRepository.existsByEmail(dto.getEmail())) {
-      log.warn("이메일이 중복되었습니다. {}", dto.getEmail());
-      throw new RuntimeException("중복된 이메일 입니다.");
-    }
-
     dto.setPw(encoder.encode(dto.getPw()));
 
     User user = dto.toEntity(uploadedFilePath);
