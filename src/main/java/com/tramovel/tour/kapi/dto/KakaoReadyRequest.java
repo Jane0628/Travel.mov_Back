@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @ToString
@@ -18,6 +20,8 @@ public class KakaoReadyRequest {
   private String partnerUserId;
   @JsonProperty("item_name")
   private String itemName;
+  @JsonProperty("item_code")
+  private String itemCode;
   @JsonProperty("quantity")
   private String quantity;
   @JsonProperty("total_amount")
@@ -26,4 +30,8 @@ public class KakaoReadyRequest {
   private String vatAmount;
   @JsonProperty("tax_free_amount")
   private String taxFreeAmount;
+  @JsonProperty("start_date")
+  private LocalDateTime startDate;
+  @JsonProperty("end_date")
+  private LocalDateTime endDate;
 }
