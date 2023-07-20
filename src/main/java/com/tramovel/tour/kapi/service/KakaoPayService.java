@@ -3,6 +3,8 @@ package com.tramovel.tour.kapi.service;
 import com.tramovel.tour.kapi.dto.KakaoApproveResponse;
 import com.tramovel.tour.kapi.dto.KakaoReadyRequest;
 import com.tramovel.tour.kapi.dto.KakaoReadyResponse;
+import com.tramovel.tour.kapi.entity.KakaoPay;
+import com.tramovel.tour.kapi.repository.KakaoPayRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +20,8 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 @Transactional
 public class KakaoPayService {
+
+  private final KakaoPayRepository kakaoPayRepository;
 
   @Value("${kakao.adminKey}")
   String adminKey;
@@ -89,6 +93,27 @@ public class KakaoPayService {
       "https://kapi.kakao.com/v1/payment/approve",
       requestEntity,
       KakaoApproveResponse.class);
+    KakaoPay kakaoPay = KakaoPay.builder()
+      .tid(approveResponse.getTid())
+      .aid(approveResponse.getAid())
+      .cid(approveResponse.getCid())
+      .sid(approveResponse.getSid())
+      .partner_order_id(approveResponse.getPartner_order_id())
+      .partner_user_id(approveResponse.getPartner_user_id())
+      .payment_method_type(approveResponse.getPayment_method_type())
+      .total(approveResponse.getAmount().getTotal())
+      .tax_free(approveResponse.getAmount().getTax_free())
+      .point(approveResponse.getAmount().getPoint())
+      .discount(approveResponse.getAmount().getDiscount())
+      .green_doposit(approveResponse.getAmount().getGreen_deposit())
+      .item_code(approveResponse.getItem_code())
+      .item_name(approveResponse.getItem_name())
+      .quantity(approveResponse.getQuantity())
+      .created_at(approveResponse.getCreated_at())
+      .approved_at(approveResponse.getApproved_at())
+      .payload(approveResponse.getPayload())
+      .build();
+    kakaoPayRepository.save(kakaoPay);
 
     return approveResponse;
   }

@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @RestController
 @RequestMapping("/pay")
@@ -20,11 +22,15 @@ import org.springframework.web.servlet.view.RedirectView;
 public class KakaoPayController {
   private final KakaoPayService kakaoPayService;
   private final ReservationService reservationService;
+  private LocalDateTime startDate;
+  private LocalDateTime endDate;
 
   @PostMapping("/ready")
   public KakaoReadyResponse ready(@RequestBody KakaoReadyRequest requestDTO) {
     System.out.println(requestDTO.getItemName());
     log.info("req"+ requestDTO.toString());
+    startDate = requestDTO.getStartDate();
+    endDate = requestDTO.getEndDate();
 
     return kakaoPayService.kakaoPayReady(requestDTO);
   }
@@ -34,7 +40,7 @@ public class KakaoPayController {
 
     KakaoApproveResponse kakaoApprove = kakaoPayService.approveResponse(pgToken);
 
-    reservationService.saveReservation(kakaoApprove);
+    reservationService.saveReservation(kakaoApprove, startDate, endDate);
     System.out.println("kakaoApprove = " + kakaoApprove);
     RedirectView redirectView = new RedirectView();
     redirectView.setUrl("http://localhost:3000/reservationCheck");
