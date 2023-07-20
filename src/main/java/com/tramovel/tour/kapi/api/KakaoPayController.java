@@ -22,13 +22,13 @@ import java.time.LocalDateTime;
 public class KakaoPayController {
   private final KakaoPayService kakaoPayService;
   private final ReservationService reservationService;
-  private LocalDateTime startDate;
-  private LocalDateTime endDate;
+  private String startDate;
+  private String endDate;
 
   @PostMapping("/ready")
   public KakaoReadyResponse ready(@RequestBody KakaoReadyRequest requestDTO) {
     System.out.println(requestDTO.getItemName());
-    log.info("req"+ requestDTO.toString());
+    log.info("req ="+ requestDTO.toString());
     startDate = requestDTO.getStartDate();
     endDate = requestDTO.getEndDate();
 

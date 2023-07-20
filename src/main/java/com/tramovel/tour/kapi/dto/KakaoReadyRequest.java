@@ -31,7 +31,7 @@ public class KakaoReadyRequest {
   @JsonProperty("tax_free_amount")
   private String taxFreeAmount;
   @JsonProperty("start_date")
-  private LocalDateTime startDate;
+  private String startDate;
   @JsonProperty("end_date")
-  private LocalDateTime endDate;
+  private String endDate;
 }
