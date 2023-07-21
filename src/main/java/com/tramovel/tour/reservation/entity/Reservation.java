@@ -16,8 +16,11 @@ import java.time.LocalDateTime;
 public class Reservation {
 
   @Id
+  @Column
+  private String aid; //예약코드
+  
   @Column(name = "partner_order_id")
-  private String partnerOrderId; //예약번호
+  private String partnerOrderId; //회원 이름
 
   @Column
   private String tid; //결제코드
@@ -26,10 +29,10 @@ public class Reservation {
   private String itemCode; //호텔코드
 
   @Column(name = "start_date")
-  private LocalDateTime startDate; //체크인
+  private String startDate; //체크인
 
   @Column(name = "end_date")
-  private LocalDateTime endDate; //체크아웃
+  private String endDate; //체크아웃
 
   @Column(name = "partner_user_id")
   private String partnerUserId; //예약자
