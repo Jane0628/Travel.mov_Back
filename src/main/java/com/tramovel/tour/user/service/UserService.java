@@ -35,7 +35,7 @@ public class UserService {
 
     if(userRepository.existsById(dto.getId())) {
       log.warn("아이디가 중복되었습니다. {}", dto.getId());
-      throw new RuntimeException("중복된 아이디 입니다.");
+      throw new RuntimeException("중복된 아이디입니다.");
     }
 
     dto.setPw(encoder.encode(dto.getPw()));
@@ -43,7 +43,6 @@ public class UserService {
     User user = dto.toEntity(uploadedFilePath);
 
     userRepository.save(user);
-
   }
 
   public String uploadProfileImage(MultipartFile file) throws IOException {

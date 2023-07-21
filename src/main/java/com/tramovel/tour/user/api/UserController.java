@@ -26,7 +26,7 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-  //회원가입
+  // 회원가입
   @PostMapping
   public void signup(
     @Validated @RequestBody UserSignUpRequestDTO dto,
@@ -70,6 +70,12 @@ public class UserController {
     return ResponseEntity.ok().body(result);
   }
 
+  // 로그인할 때 이메일 정보 빼오기
+  @PostMapping("/getEmail")
+  public String getEmail(String id) {
+
+    return "";
+  }
 
   //로그인 요청 처리
   @PostMapping("/signin")

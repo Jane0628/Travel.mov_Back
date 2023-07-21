@@ -16,4 +16,6 @@ public class UserLoginRequestDTO {
   @NotBlank
   private String pw;
 
+  private String email;
+
 }
