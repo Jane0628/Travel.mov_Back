@@ -15,7 +15,6 @@ public class UserLoginResponseDTO {
 
   private String id;
   private String email;
-  private String name;
   private String nick;
 
   @JsonFormat(pattern = "yyyy년 MM월 dd일")
