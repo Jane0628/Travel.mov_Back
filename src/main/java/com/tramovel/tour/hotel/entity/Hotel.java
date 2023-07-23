@@ -2,9 +2,7 @@ package com.tramovel.tour.hotel.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter @Setter
 @ToString
@@ -15,6 +13,7 @@ import javax.persistence.Id;
 public class Hotel {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "hotel_id")
   private long id;
 

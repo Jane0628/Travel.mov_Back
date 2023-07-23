@@ -21,13 +21,19 @@ public class FreeBoard {
   private long id;
 
   @Column
-  private String title;
+  private String movie; //영화 이름
 
   @Column
-  private String content;
+  private String title; //제목
 
   @Column
-  private String userNick;
+  private String content; //내용
+
+  @Column
+  private String userNick; //작성자
+
+  @Column
+  private int star; //별점
 
   @CreationTimestamp
   private LocalDateTime uploadDate;

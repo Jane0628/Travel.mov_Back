@@ -17,4 +17,8 @@ public class UploadRequestDTO {
   private String title;
   @NotBlank
   private String content;
+
+  private int star;
+
+  private String movie;
 }
