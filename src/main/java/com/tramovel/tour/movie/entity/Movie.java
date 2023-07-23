@@ -1,7 +1,6 @@
 package com.tramovel.tour.movie.entity;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 
