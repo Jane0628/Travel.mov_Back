@@ -3,9 +3,7 @@ package com.tramovel.tour.movie.entity;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @ToString @EqualsAndHashCode
@@ -16,7 +14,8 @@ import javax.persistence.Table;
 public class Movie {
 
   @Id
-  private String id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long movieId;
 
   @Column(nullable = false)
   private String title;
@@ -29,9 +28,6 @@ public class Movie {
 
   @Column(nullable = false)
   private String originalLanguage;
-
-  @Column
-  private String genre;
 
   //imdb에서의 검색을 위한 아이디(ex. tt013123)
   @Column(nullable = false)
