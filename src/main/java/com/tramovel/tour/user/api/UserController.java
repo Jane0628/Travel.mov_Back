@@ -1,5 +1,7 @@
 package com.tramovel.tour.user.api;
 
+import com.tramovel.tour.coupon.dto.request.CouponCreateDTO;
+import com.tramovel.tour.coupon.service.CouponService;
 import com.tramovel.tour.user.dto.request.UserDeleteRequestDTO;
 import com.tramovel.tour.user.dto.request.UserLoginRequestDTO;
 import com.tramovel.tour.user.dto.request.UserModifyRequestDTO;
@@ -25,6 +27,9 @@ public class UserController {
 
   @Autowired
   private UserService userService;
+
+  @Autowired
+  private CouponService couponService;
 
   // 회원가입
   @PostMapping
@@ -55,6 +60,12 @@ public class UserController {
 //    } catch (IOException e) {
 //      throw new RuntimeException(e);
 //    }
+    CouponCreateDTO createCoupon = CouponCreateDTO.builder()
+      .userId(dto.getId())
+      .discountPrice(10000)
+      .name("회원 가입 10000원 쿠폰")
+      .build();
+    couponService.createCoupon(createCoupon);
 
   }
 

@@ -36,5 +36,5 @@ public class FreeBoard {
   private int star; //별점
 
   @CreationTimestamp
-  private LocalDateTime uploadDate;
+  private LocalDateTime uploadDate; //작성일
 }
