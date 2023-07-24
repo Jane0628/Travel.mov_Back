@@ -3,6 +3,7 @@ package com.tramovel.tour.movie.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @ToString @EqualsAndHashCode
@@ -25,11 +26,10 @@ public class Movie {
   @Column(nullable = false)
   private String posterPath;
 
-  @Column(nullable = false)
-  private String originalLanguage;
-
   //imdb에서의 검색을 위한 아이디(ex. tt013123)
   @Column(nullable = false)
   private String imdbId;
+
+  private LocalDateTime releaseDate;
 
 }
