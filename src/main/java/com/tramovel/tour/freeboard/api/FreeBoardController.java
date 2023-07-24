@@ -1,5 +1,6 @@
 package com.tramovel.tour.freeboard.api;
 
+import com.tramovel.tour.freeboard.dto.FreeBoardDetailDTO;
 import com.tramovel.tour.freeboard.dto.FreeBoardListDTO;
 import com.tramovel.tour.freeboard.dto.UploadRequestDTO;
 import com.tramovel.tour.freeboard.service.FreeBoardService;
@@ -21,11 +22,30 @@ public class FreeBoardController {
     freeBoardService.upload(requestDTO);
   }
 
-  @GetMapping("/{nick}")
-  public ResponseEntity<?> getFreeBoardList(@PathVariable("nick") String nick) {
+  @GetMapping("/{movie}")
+  public ResponseEntity<?> getFreeBoardList(@PathVariable("movie") String movie) {
     log.info("Get freeList");
-    FreeBoardListDTO freeBoardDTOS = freeBoardService.retrieve(nick);
+    FreeBoardListDTO freeBoardDTOS = freeBoardService.retrieve(movie);
     System.out.println("freeBoardDTOS = " + freeBoardDTOS);
     return ResponseEntity.ok().body(freeBoardDTOS);
+  }
+
+  @GetMapping("/detail/{id}")
+  public ResponseEntity<?> getFreeBoardDetail(@PathVariable("id") long id) {
+    log.info("Get freeDetail");
+    FreeBoardDetailDTO freeBoard = freeBoardService.getDetail(id);
+    System.out.println("freeBoard = " + freeBoard);
+    return  ResponseEntity.ok().body(freeBoard);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<?> deleteBoard(@PathVariable("id") long id) {
+    log.info("Delete freeBoard");
+    try {
+      freeBoardService.delete(id);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return ResponseEntity.ok().body("삭제가 완료되었습니다.");
   }
 }

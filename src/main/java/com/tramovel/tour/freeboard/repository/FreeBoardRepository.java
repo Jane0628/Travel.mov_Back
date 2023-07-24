@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface FreeBoardRepository extends JpaRepository<FreeBoard, Long> {
 
-  @Query(value = "SELECT * FROM free_board WHERE user_nick = :nick" , nativeQuery = true)
-  List<FreeBoard> findAllByNick(String nick);
+  @Query(value = "SELECT * FROM free_board WHERE movie = :movie" , nativeQuery = true)
+  List<FreeBoard> findAllByMovie(String movie);
 
 }
