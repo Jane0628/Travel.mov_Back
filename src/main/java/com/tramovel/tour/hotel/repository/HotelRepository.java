@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface HotelRepository extends JpaRepository<Hotel, String> {
-  @Query(value = "SELECT * FROM hotel WHERE address LIKE '%:address'" , nativeQuery = true)
+  @Query(value = "SELECT * FROM hotel WHERE address LIKE '%:address%'" , nativeQuery = true)
   List<Hotel> findByAddress(String address);
 }
