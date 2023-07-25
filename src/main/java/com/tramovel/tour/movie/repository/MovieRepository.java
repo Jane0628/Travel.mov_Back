@@ -7,9 +7,4 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface MovieRepository extends JpaRepository<Movie, Long> {
-  @Query("SELECT m FROM Movie m WHERE m.originalLanguage = 'ko'")
-  List<Movie> findAllByLanguageKo();
-
-  @Query("SELECT m FROM Movie m WHERE m.originalLanguage = 'en'")
-  List<Movie> findAllByLanguageEn();
 }
