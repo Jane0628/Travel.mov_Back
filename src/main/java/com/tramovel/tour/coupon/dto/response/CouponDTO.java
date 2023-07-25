@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 public class CouponDTO {
   private String id;
+  private String name;
   private int discountRate;
   private int discountPrice;
   private String userId;
@@ -21,6 +22,7 @@ public class CouponDTO {
 
   public CouponDTO(Coupon coupon) {
     this.id = coupon.getId();
+    this.name = coupon.getName();
     this.discountRate = coupon.getDiscountRate();
     this.discountPrice = coupon.getDiscountPrice();
     this.userId = coupon.getUserId();

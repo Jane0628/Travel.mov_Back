@@ -1,5 +1,6 @@
 package com.tramovel.tour.kapi.api;
 
+import com.tramovel.tour.coupon.service.CouponService;
 import com.tramovel.tour.kapi.dto.KakaoApproveResponse;
 import com.tramovel.tour.kapi.dto.KakaoReadyRequest;
 import com.tramovel.tour.kapi.dto.KakaoReadyResponse;
@@ -22,15 +23,17 @@ import java.time.LocalDateTime;
 public class KakaoPayController {
   private final KakaoPayService kakaoPayService;
   private final ReservationService reservationService;
+  private final CouponService couponService;
   private String startDate;
   private String endDate;
+  private String couponId;
 
   @PostMapping("/ready")
   public KakaoReadyResponse ready(@RequestBody KakaoReadyRequest requestDTO) {
-    System.out.println(requestDTO.getItemName());
     log.info("req ="+ requestDTO.toString());
     startDate = requestDTO.getStartDate();
     endDate = requestDTO.getEndDate();
+    couponId = requestDTO.getCoupon();
 
     return kakaoPayService.kakaoPayReady(requestDTO);
   }
@@ -41,6 +44,7 @@ public class KakaoPayController {
     KakaoApproveResponse kakaoApprove = kakaoPayService.approveResponse(pgToken);
 
     reservationService.saveReservation(kakaoApprove, startDate, endDate);
+    couponService.useCoupon(couponId);
     System.out.println("kakaoApprove = " + kakaoApprove);
     RedirectView redirectView = new RedirectView();
     redirectView.setUrl("http://localhost:3000/reservationCheck");
