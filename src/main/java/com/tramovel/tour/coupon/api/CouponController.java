@@ -3,6 +3,7 @@ package com.tramovel.tour.coupon.api;
 import com.tramovel.tour.auth.TokenUserInfo;
 import com.tramovel.tour.coupon.dto.request.CouponCreateDTO;
 import com.tramovel.tour.coupon.dto.response.CouponDTO;
+import com.tramovel.tour.coupon.dto.response.CouponListDTO;
 import com.tramovel.tour.coupon.service.CouponService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,8 @@ public class CouponController {
   @GetMapping
   public ResponseEntity<?> getCouponList(@AuthenticationPrincipal TokenUserInfo userInfo) {
     try {
-      List<CouponDTO> couponList = couponService.getCouponList(userInfo.getId());
+      CouponListDTO couponList = couponService.getCouponList(userInfo.getId());
+      System.out.println("couponList = " + couponList);
       return ResponseEntity.ok().body(couponList);
     } catch (Exception e) {
       e.printStackTrace();

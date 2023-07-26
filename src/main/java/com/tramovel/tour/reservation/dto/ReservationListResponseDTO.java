@@ -15,7 +15,6 @@ import java.util.List;
 @Builder
 public class ReservationListResponseDTO {
 
-  private String error; //에러 발생 시 에러 메세지를 담을 필드
   private List<ReservationDetailResponseDTO> reservationDTOS;
 
 }
