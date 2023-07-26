@@ -21,8 +21,15 @@ public class HotelController {
   @Autowired
   private HotelService hotelService;
 
-  @GetMapping("/address")
+  @GetMapping("/{address}")
   public ResponseEntity<?> getAllHotels(@PathVariable("address") String address) {
+    System.out.println("address = " + address);
     return ResponseEntity.ok().body(hotelService.getAllHotels(address));
+  }
+
+  @GetMapping("/id/{id}")
+  public ResponseEntity<?> getHotel(@PathVariable("id") long id) {
+    System.out.println("id = " + id);
+    return ResponseEntity.ok().body(hotelService.getHotel(id));
   }
 }

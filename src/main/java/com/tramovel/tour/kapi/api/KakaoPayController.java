@@ -44,7 +44,8 @@ public class KakaoPayController {
     KakaoApproveResponse kakaoApprove = kakaoPayService.approveResponse(pgToken);
 
     reservationService.saveReservation(kakaoApprove, startDate, endDate);
-    couponService.useCoupon(couponId);
+    //쿠폰이 있을때 쿠폰 삭제
+    if(couponId != null ) couponService.useCoupon(couponId);
     System.out.println("kakaoApprove = " + kakaoApprove);
     RedirectView redirectView = new RedirectView();
     redirectView.setUrl("http://localhost:3000/reservationCheck");

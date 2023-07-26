@@ -18,6 +18,11 @@ public class HotelService {
   private HotelRepository hotelRepository;
 
   public List<Hotel> getAllHotels(String address) {
+    System.out.println("address = " + address);
     return hotelRepository.findByAddress(address);
+  }
+
+  public Hotel getHotel(long id) {
+    return hotelRepository.findById(id).orElseThrow();
   }
 }
