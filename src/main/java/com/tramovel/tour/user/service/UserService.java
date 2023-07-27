@@ -46,9 +46,10 @@ public class UserService {
   }
 
   public String uploadProfileImage(MultipartFile file) throws IOException {
-    File RootDir = new File(uploadRootPath);
-    if(!RootDir.exists()) RootDir.mkdir();
+//    File RootDir = new File(uploadRootPath);
+//    if(!RootDir.exists()) RootDir.mkdir();
 
+    // 파일명을 유니크하게 변경
     String uuid = UUID.randomUUID() + "_" + file.getOriginalFilename();
 
     File uploadFile = new File(uploadRootPath + "/" + uuid);
@@ -56,7 +57,12 @@ public class UserService {
 
     return uuid;
   }
-
+  public String findProfilePath(String getId) {
+    User user = userRepository.findById(getId)
+      .orElseThrow();
+//        return uploadRootPath + "/" + user.getProfileImg();
+    return user.getProfileImg();
+  }
   //회원 인증
   public UserLoginResponseDTO authenticate(final UserLoginRequestDTO dto) {
 
@@ -102,7 +108,6 @@ public class UserService {
 
     //회원 정보 수정
     dto.setPw(encoder.encode(dto.getPw()));
-    user.setPw(dto.getPw());
     user.setNick(dto.getNick());
     user.setEmail(dto.getEmail());
     user.setProfileImg(profileImg);
