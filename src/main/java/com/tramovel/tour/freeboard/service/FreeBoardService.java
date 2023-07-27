@@ -60,4 +60,11 @@ public class FreeBoardService {
       e.printStackTrace();
     }
   }
+
+  public FreeBoardListDTO myList(String nick) {
+    List<FreeBoard> entityList = freeBoardRepository.findAllByNick(nick);
+    List<FreeBoardDetailDTO> dtoList = entityList.stream().map(FreeBoardDetailDTO::new)
+      .collect(Collectors.toList());
+    return FreeBoardListDTO.builder().freeBoards(dtoList).build();
+  }
 }
