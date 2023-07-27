@@ -34,4 +34,5 @@ public class KakaoReadyRequest {
   private String startDate;
   @JsonProperty("end_date")
   private String endDate;
+  private String coupon;
 }

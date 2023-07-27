@@ -23,10 +23,10 @@ public class Hotel {
   @Column
   private long price; //1박 가격
 
-  @Column
+  @Column(length = 1000)
   private String address; //호텔 주소
 
-  @Column
+  @Column(length = 1000)
   private String img; //이미지 주소url
 
   @Column()
