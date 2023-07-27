@@ -35,6 +35,7 @@ public class KakaoPayService {
     parameters.add("partner_order_id", requestDTO.getPartnerOrderId());
     parameters.add("partner_user_id", requestDTO.getPartnerUserId());
     parameters.add("item_name", requestDTO.getItemName());
+    parameters.add("item_code", requestDTO.getItemCode());
     parameters.add("quantity", requestDTO.getQuantity());
     parameters.add("total_amount", requestDTO.getTotalAmount());
     parameters.add("vat_amount", requestDTO.getVatAmount());
@@ -93,6 +94,7 @@ public class KakaoPayService {
       "https://kapi.kakao.com/v1/payment/approve",
       requestEntity,
       KakaoApproveResponse.class);
+    System.out.println("approveResponse = " + approveResponse);
     KakaoPay kakaoPay = KakaoPay.builder()
       .tid(approveResponse.getTid())
       .aid(approveResponse.getAid())

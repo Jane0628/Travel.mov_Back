@@ -21,4 +21,6 @@ public class UploadRequestDTO {
   private int star;
 
   private String movie;
+
+  private long hotel;
 }

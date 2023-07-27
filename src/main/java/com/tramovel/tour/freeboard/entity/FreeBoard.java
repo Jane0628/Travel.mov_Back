@@ -1,5 +1,6 @@
 package com.tramovel.tour.freeboard.entity;
 
+import com.tramovel.tour.hotel.entity.Hotel;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
-@ToString
+@ToString(exclude = "hotel")
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor @AllArgsConstructor
 @Builder
@@ -22,6 +23,10 @@ public class FreeBoard {
 
   @Column
   private String movie; //영화 이름
+
+  @ManyToOne
+  @JoinColumn(name = "hotel_id")
+  private Hotel hotel;//호텔
 
   @Column
   private String title; //제목
