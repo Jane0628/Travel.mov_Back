@@ -21,15 +21,26 @@ public class HotelController {
   @Autowired
   private HotelService hotelService;
 
-  @GetMapping("/{address}")
-  public ResponseEntity<?> getAllHotels(@PathVariable("address") String address) {
+  @GetMapping("/address/{address}") //주소로 호텔 검색
+  public ResponseEntity<?> getNHotels(@PathVariable("address") String address) {
     System.out.println("address = " + address);
-    return ResponseEntity.ok().body(hotelService.getAllHotels(address));
+    return ResponseEntity.ok().body(hotelService.getNHotels(address));
   }
 
-  @GetMapping("/id/{id}")
+  @GetMapping
+  public ResponseEntity<?> getAllHotels() {
+    return ResponseEntity.ok().body(hotelService.getAllHotels());
+  }
+
+  @GetMapping("/id/{id}") // 호텔아이디로 호텔 검색
   public ResponseEntity<?> getHotel(@PathVariable("id") long id) {
     System.out.println("id = " + id);
     return ResponseEntity.ok().body(hotelService.getHotel(id));
+  }
+
+  @GetMapping("/name/{name}") // 호텔 이름으로 호텔 검색
+  public ResponseEntity<?> getHotelByName(@PathVariable("name") String name) {
+    System.out.println("name = " + name);
+    return ResponseEntity.ok().body(hotelService.getHotelByName(name));
   }
 }

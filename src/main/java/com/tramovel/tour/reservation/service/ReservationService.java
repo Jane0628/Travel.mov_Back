@@ -1,5 +1,7 @@
 package com.tramovel.tour.reservation.service;
 
+import com.tramovel.tour.hotel.entity.Hotel;
+import com.tramovel.tour.hotel.repository.HotelRepository;
 import com.tramovel.tour.kapi.dto.KakaoApproveResponse;
 import com.tramovel.tour.reservation.dto.ReservationDetailResponseDTO;
 import com.tramovel.tour.reservation.dto.ReservationListResponseDTO;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,21 +23,25 @@ import java.util.stream.Collectors;
 public class ReservationService {
 
   private final ReservationRepository reservationRepository;
-  private final UserRepository userRepository;
+  private final HotelRepository hotelRepository;
   public void saveReservation(KakaoApproveResponse kakaoApprove,
                               String startDate, String endDate) {
    Reservation reservation = Reservation.builder()
      .aid(kakaoApprove.getAid())
      .partnerOrderId(kakaoApprove.getPartner_order_id())
      .tid(kakaoApprove.getTid())
+     .itemName(kakaoApprove.getItem_name())
      .itemCode(kakaoApprove.getItem_code())
      .startDate(startDate)
      .endDate(endDate)
      .partnerUserId(kakaoApprove.getPartner_user_id())
-     .itemName(kakaoApprove.getItem_name())
      .totalAmount(kakaoApprove.getAmount().getTotal())
      .build();
       reservationRepository.save(reservation);
+      Hotel hotel = hotelRepository
+        .findById(Long.valueOf(kakaoApprove.getItem_code())).orElseThrow();
+      hotel.setReservation(0);
+      hotelRepository.save(hotel);
   }
 
   public ReservationListResponseDTO retrieve(String nick) {

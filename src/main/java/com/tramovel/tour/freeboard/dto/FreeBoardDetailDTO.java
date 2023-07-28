@@ -1,6 +1,7 @@
 package com.tramovel.tour.freeboard.dto;
 
 import com.tramovel.tour.freeboard.entity.FreeBoard;
+import com.tramovel.tour.hotel.entity.Hotel;
 import com.tramovel.tour.reservation.entity.Reservation;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class FreeBoardDetailDTO {
   private String title;
   private String content;
   private String userNick;
+  private Hotel hotel;
   private int star;
   private LocalDateTime uploadDate;
 
@@ -29,6 +31,7 @@ public class FreeBoardDetailDTO {
     this.title = freeBoard.getTitle();
     this.content = freeBoard.getContent();
     this.userNick = freeBoard.getUserNick();
+    this.hotel = freeBoard.getHotel();
     this.star = freeBoard.getStar();
     this.uploadDate = freeBoard.getUploadDate();
   }
