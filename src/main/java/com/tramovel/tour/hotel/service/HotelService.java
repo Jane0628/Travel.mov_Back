@@ -17,12 +17,20 @@ public class HotelService {
   @Autowired
   private HotelRepository hotelRepository;
 
-  public List<Hotel> getAllHotels(String address) {
+  public List<Hotel> getNHotels(String address) {
     System.out.println("address = " + address);
     return hotelRepository.findByAddress(address);
   }
 
   public Hotel getHotel(long id) {
     return hotelRepository.findById(id).orElseThrow();
+  }
+
+  public Hotel getHotelByName(String name) {
+    return hotelRepository.findByName(name);
+  }
+
+  public List<Hotel> getAllHotels() {
+    return hotelRepository.findAll();
   }
 }

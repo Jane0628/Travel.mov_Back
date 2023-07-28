@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
-@ToString(exclude = "hotel")
+@ToString(exclude = {"hotel","userNick"})
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor @AllArgsConstructor
 @Builder
