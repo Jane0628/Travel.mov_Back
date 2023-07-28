@@ -26,7 +26,7 @@ public class Movie {
   @Column(nullable = false)
   private String posterPath;
 
-  //imdb에서의 검색을 위한 아이디(ex. tt013123)
+  // imdb에서의 검색을 위한 아이디 (ex. tt013123)
   @Column(nullable = false)
   private String imdbId;
 
