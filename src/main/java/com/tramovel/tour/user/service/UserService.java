@@ -60,8 +60,9 @@ public class UserService {
   public String findProfilePath(String getId) {
     User user = userRepository.findById(getId)
       .orElseThrow();
-//        return uploadRootPath + "/" + user.getProfileImg();
-    return user.getProfileImg();
+    System.out.println("user.getProfileImg() = " + user.getProfileImg());
+        return uploadRootPath + "/" + user.getProfileImg();
+//    return user.getProfileImg();
   }
   //회원 인증
   public UserLoginResponseDTO authenticate(final UserLoginRequestDTO dto) {
