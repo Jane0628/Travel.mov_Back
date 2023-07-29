@@ -16,6 +16,7 @@ public class UserLoginResponseDTO {
   private String id;
   private String email;
   private String nick;
+  private String role;
 
   @JsonFormat(pattern = "yyyy년 MM월 dd일")
   private LocalDate joinDate;
@@ -27,6 +28,7 @@ public class UserLoginResponseDTO {
     this.email = user.getEmail();
     this.nick = user.getNick();
     this.joinDate = LocalDate.from(user.getJoinDate());
+    this.role = user.getRole();
     this.token = token;
   }
 

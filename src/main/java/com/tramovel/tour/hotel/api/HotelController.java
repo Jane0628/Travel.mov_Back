@@ -1,14 +1,15 @@
 package com.tramovel.tour.hotel.api;
 
+import com.tramovel.tour.auth.TokenUserInfo;
+import com.tramovel.tour.hotel.dto.AddHotelRequestDTO;
 import com.tramovel.tour.hotel.service.HotelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/hotels")
@@ -31,5 +32,19 @@ public class HotelController {
   public ResponseEntity<?> getHotel(@PathVariable("id") long id) {
     System.out.println("id = " + id);
     return ResponseEntity.ok().body(hotelService.getHotel(id));
+  }
+
+  @PostMapping
+  public void addHotel(@RequestBody AddHotelRequestDTO dto) {
+    hotelService.addHotel(dto);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<?> deleteHotel(
+    @AuthenticationPrincipal TokenUserInfo userInfo,
+    @PathVariable("id") long id
+  ) {
+
+    hotelService.deleteHotel(id);
   }
 }
