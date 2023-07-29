@@ -1,16 +1,17 @@
 package com.tramovel.tour.hotel.api;
 
+import com.tramovel.tour.auth.TokenUserInfo;
+import com.tramovel.tour.hotel.dto.AddHotelRequestDTO;
 import com.tramovel.tour.hotel.service.HotelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@Controller
+@RestController
 @RequestMapping("/hotels")
 @Slf4j
 @CrossOrigin
@@ -38,9 +39,22 @@ public class HotelController {
     return ResponseEntity.ok().body(hotelService.getHotel(id));
   }
 
+  @PostMapping
+  public void addHotel(@RequestBody AddHotelRequestDTO dto) {
+    hotelService.addHotel(dto);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<?> deleteHotel(@PathVariable("id") long id) {
+
+    return ResponseEntity.ok().body(hotelService.deleteHotel(id));
+
+  }
+
   @GetMapping("/name/{name}") // 호텔 이름으로 호텔 검색
   public ResponseEntity<?> getHotelByName(@PathVariable("name") String name) {
     System.out.println("name = " + name);
     return ResponseEntity.ok().body(hotelService.getHotelByName(name));
+
   }
 }

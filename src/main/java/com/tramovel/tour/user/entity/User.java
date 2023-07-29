@@ -1,6 +1,7 @@
 package com.tramovel.tour.user.entity;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Column;
@@ -34,5 +35,8 @@ public class User {
   private LocalDateTime joinDate;
 
   private String profileImg;
+
+  @Builder.Default
+  private String role = "일반회원";
 
 }

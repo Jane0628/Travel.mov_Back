@@ -11,5 +11,6 @@ public class TokenUserInfo {
   private String id;
   private String email;
   private String nick;
+  private String role;
 
 }

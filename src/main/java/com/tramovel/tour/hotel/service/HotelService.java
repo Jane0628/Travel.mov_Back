@@ -1,5 +1,6 @@
 package com.tramovel.tour.hotel.service;
 
+import com.tramovel.tour.hotel.dto.AddHotelRequestDTO;
 import com.tramovel.tour.hotel.entity.Hotel;
 import com.tramovel.tour.hotel.repository.HotelRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,22 @@ public class HotelService {
 
   public Hotel getHotel(long id) {
     return hotelRepository.findById(id).orElseThrow();
+  }
+
+  public void addHotel(AddHotelRequestDTO dto) {
+    hotelRepository.save(
+      Hotel.builder()
+        .img(dto.getImg())
+        .price(dto.getPrice())
+        .name(dto.getName())
+        .address(dto.getAddress())
+        .build()
+    );
+  }
+
+  public List<Hotel> deleteHotel(long id) {
+    hotelRepository.deleteById(id);
+    return getAllHotels();
   }
 
   public Hotel getHotelByName(String name) {

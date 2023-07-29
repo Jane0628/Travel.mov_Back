@@ -29,6 +29,7 @@ public class TokenProvider {
     Map<String, Object> claims = new HashMap<>();
     claims.put("nick", userEntity.getNick());
     claims.put("email", userEntity.getEmail());
+    claims.put("role", userEntity.getRole());
 
     return Jwts.builder()
       .signWith(
@@ -58,6 +59,7 @@ public class TokenProvider {
       .id(claims.getSubject())
       .email(claims.get("email", String.class))
       .nick(claims.get("nick", String.class))
+      .role(claims.get("role", String.class))
       .build();
 
   }
