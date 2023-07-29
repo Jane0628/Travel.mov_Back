@@ -38,8 +38,9 @@ public class HotelService {
     );
   }
 
-  public void deleteHotel(long id) {
+  public List<Hotel> deleteHotel(long id) {
     hotelRepository.deleteById(id);
+    return getAllHotels();
   }
 
   public Hotel getHotelByName(String name) {

@@ -36,7 +36,7 @@ public class User {
 
   private String profileImg;
 
-  @ColumnDefault("일반회원")
-  private String role;
+  @Builder.Default
+  private String role = "일반회원";
 
 }

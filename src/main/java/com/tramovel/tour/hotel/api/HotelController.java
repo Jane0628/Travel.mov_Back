@@ -11,7 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/hotels")
 @Slf4j
 @CrossOrigin
@@ -45,9 +45,9 @@ public class HotelController {
   }
 
   @DeleteMapping("/{id}")
-  public void deleteHotel(@PathVariable("id") long id) {
+  public ResponseEntity<?> deleteHotel(@PathVariable("id") long id) {
 
-    hotelService.deleteHotel(id);
+    return ResponseEntity.ok().body(hotelService.deleteHotel(id));
 
   }
 
