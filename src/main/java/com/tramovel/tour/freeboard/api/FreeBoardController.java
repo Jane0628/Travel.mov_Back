@@ -22,10 +22,10 @@ public class FreeBoardController {
     freeBoardService.upload(requestDTO);
   }
 
-  @GetMapping("/{movie}")
-  public ResponseEntity<?> getFreeBoardList(@PathVariable("movie") String movie) {
+  @GetMapping("/{hotel}")
+  public ResponseEntity<?> getFreeBoardList(@PathVariable("hotel") Long hotel) {
     log.info("Get freeList");
-    FreeBoardListDTO freeBoardDTOS = freeBoardService.retrieve(movie);
+    FreeBoardListDTO freeBoardDTOS = freeBoardService.retrieve(hotel);
     System.out.println("freeBoardDTOS = " + freeBoardDTOS);
     return ResponseEntity.ok().body(freeBoardDTOS);
   }

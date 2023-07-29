@@ -174,7 +174,7 @@ public class UserController {
     userService.delete(dto);
   }
   // 프로필 사진 이미지 데이터를 클라이언트에게 응답 처리
-  @GetMapping
+  @GetMapping("/load-profile")
   public ResponseEntity<?> loadFile(
     @AuthenticationPrincipal TokenUserInfo userInfo
   ) {
@@ -188,6 +188,7 @@ public class UserController {
       File profileFile = new File(filePath);
 
       if (!profileFile.exists()) {
+        System.out.println("없나?");
         return ResponseEntity.notFound().build();
       }
 
@@ -198,6 +199,7 @@ public class UserController {
       HttpHeaders headers = new HttpHeaders();
       MediaType contentType = findExtensionAndGetMediaType(filePath);
       if(contentType == null) {
+        System.out.println("여긴가?");
         return ResponseEntity.internalServerError()
           .body("발견된 파일은 이미지 파일이 아닙니다.");
       }

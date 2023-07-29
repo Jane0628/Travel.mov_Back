@@ -18,7 +18,7 @@ public class HotelService {
   @Autowired
   private HotelRepository hotelRepository;
 
-  public List<Hotel> getAllHotels(String address) {
+  public List<Hotel> getNHotels(String address) {
     System.out.println("address = " + address);
     return hotelRepository.findByAddress(address);
   }
@@ -38,7 +38,15 @@ public class HotelService {
     );
   }
 
-  public List<Hotel> deleteHotel(long id) {
+  public void deleteHotel(long id) {
     hotelRepository.deleteById(id);
+  }
+
+  public Hotel getHotelByName(String name) {
+    return hotelRepository.findByName(name);
+  }
+
+  public List<Hotel> getAllHotels() {
+    return hotelRepository.findAll();
   }
 }
