@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,8 +44,10 @@ public class HotelService {
     return getAllHotels();
   }
 
-  public Hotel getHotelByName(String name) {
-    return hotelRepository.findByName(name);
+  public List<Hotel> getHotelByName(String name) {
+    List<Hotel> hotelList = new ArrayList<Hotel>();
+    hotelList.add(hotelRepository.findByName(name));
+    return hotelList;
   }
 
   public List<Hotel> getAllHotels() {

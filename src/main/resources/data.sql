@@ -7,8 +7,10 @@ INSERT INTO hotel (hotel_id, address, img, hotel_name, price, reservation) VALUE
 (3, '서울특별시 용산구 청파로20길 95 서울드래곤시티', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBO9EFe3JAPJ9-2OTnP20RXHe7vqJAgLOZYg&usqp=CAU', '그랜드 머큐어 앰배서더 호텔 (서울)', 321750, 1),
 (4, '서울특별시 중구 동호로 249', 'https://www.shillahotels.com/images/en/hub/sub/seoulMainImg.jpg', '신라 호텔 (서울)', 495252, 1),
 (5, '서울특별시 중구 을지로 30', 'https://image.edaily.co.kr/images/Photo/files/NP/S/2018/08/PS18083001018.jpg', '롯데 호텔 (서울)', 304000, 1),
-(6, '서울특별시 서초구 신반포로 176', 'https://dimg.donga.com/wps/ECONOMY/IMAGE/2014/02/04/60568235.1.jpg', 'JW 메리어트 호텔 (서울)', 580000, 1);
-
+(6, '서울특별시 서초구 신반포로 176', 'https://dimg.donga.com/wps/ECONOMY/IMAGE/2014/02/04/60568235.1.jpg', 'JW 메리어트 호텔 (서울)', 580000, 1),
+(61, '서울특별시 영등포구 국회대로76길 16', 'https://images.trvl-media.com/lodging/2000000/1170000/1167000/1166927/5c28ed0e.jpg', '켄싱턴호텔 여의도', 166000, 1),
+(62, '서울특별시 영등포구 국제금융로 10', 'https://pix8.agoda.net/hotelImages/401/401199/401199_14101415160022733543.jpg', '콘래드 서울', 367000, 1),
+(63, '서울특별시 마포구 마포대로 109', 'https://pix8.agoda.net/hotelImages/941/9419/9419_14092616000022434133.jpg' ,'롯데시티호텔 마포', 300000, 1);
 --경기도
 INSERT INTO hotel (hotel_id, address, img, hotel_name, price, reservation) VALUES
 (7, '경기도 용인시 처인구 포곡읍 전대리 356-6', 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/116080263.jpg?k=4d683bfdd5ce67fac65045e7836fae5f71612ca5954a2b374ca87b3540817736&o=&hp=1', '라마다 호텔 (용인)', 200000, 1),

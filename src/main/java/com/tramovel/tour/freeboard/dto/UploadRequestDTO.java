@@ -1,5 +1,6 @@
 package com.tramovel.tour.freeboard.dto;
 
+import com.tramovel.tour.user.entity.User;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -12,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 @EqualsAndHashCode
 public class UploadRequestDTO {
 
-  private String userNick;
+  private String id;
   @NotBlank
   private String title;
   @NotBlank
