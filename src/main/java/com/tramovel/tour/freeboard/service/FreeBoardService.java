@@ -73,6 +73,7 @@ public class FreeBoardService {
 
   public FreeBoardListDTO myList(String id) {
     User user = getUser(id);
+    System.out.println("user = " + user);
     List<FreeBoard> entityList = freeBoardRepository.findAllByUser(user);
     List<FreeBoardDetailDTO> dtoList = entityList.stream().map(FreeBoardDetailDTO::new)
       .collect(Collectors.toList());
