@@ -30,10 +30,10 @@ public class FreeBoardController {
     return ResponseEntity.ok().body(freeBoardDTOS);
   }
 
-  @GetMapping("/my/{nick}")
-  public ResponseEntity<?> getMyFreeBoardList(@PathVariable("nick") String nick) {
+  @GetMapping("/my/{id}")
+  public ResponseEntity<?> getMyFreeBoardList(@PathVariable("id") String id) {
     log.info("Get freeList");
-    FreeBoardListDTO freeBoardDTOS = freeBoardService.myList(nick);
+    FreeBoardListDTO freeBoardDTOS = freeBoardService.myList(id);
     System.out.println("freeBoardDTOS = " + freeBoardDTOS);
     return ResponseEntity.ok().body(freeBoardDTOS);
   }

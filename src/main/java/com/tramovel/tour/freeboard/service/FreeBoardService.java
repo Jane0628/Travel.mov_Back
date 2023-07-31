@@ -7,6 +7,8 @@ import com.tramovel.tour.freeboard.entity.FreeBoard;
 import com.tramovel.tour.freeboard.repository.FreeBoardRepository;
 import com.tramovel.tour.hotel.entity.Hotel;
 import com.tramovel.tour.hotel.repository.HotelRepository;
+import com.tramovel.tour.user.entity.User;
+import com.tramovel.tour.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,11 +22,12 @@ import java.util.stream.Collectors;
 public class FreeBoardService {
   private final FreeBoardRepository freeBoardRepository;
   private final HotelRepository hotelRepository;
+  private final UserRepository userRepository;
   public void upload(UploadRequestDTO requestDTO) {
     FreeBoard freeBoard = FreeBoard.builder()
       .content(requestDTO.getContent())
       .title(requestDTO.getTitle())
-      .userNick(requestDTO.getUserNick())
+      .user(getUser(requestDTO.getId()))
       .movie(requestDTO.getMovie())
       .hotel(getHotel(requestDTO.getHotel()))
       .star(requestDTO.getStar())
@@ -54,7 +57,7 @@ public class FreeBoardService {
       .content(freeBoard.getContent())
       .movie(freeBoard.getMovie())
       .star(freeBoard.getStar())
-      .userNick(freeBoard.getUserNick())
+      .user(freeBoard.getUser())
       .uploadDate(freeBoard.getUploadDate())
       .hotel(freeBoard.getHotel())
       .build();
@@ -68,10 +71,15 @@ public class FreeBoardService {
     }
   }
 
-  public FreeBoardListDTO myList(String nick) {
-    List<FreeBoard> entityList = freeBoardRepository.findAllByNick(nick);
+  public FreeBoardListDTO myList(String id) {
+    User user = getUser(id);
+    List<FreeBoard> entityList = freeBoardRepository.findAllByUser(user);
     List<FreeBoardDetailDTO> dtoList = entityList.stream().map(FreeBoardDetailDTO::new)
       .collect(Collectors.toList());
     return FreeBoardListDTO.builder().freeBoards(dtoList).build();
+  }
+
+  public User getUser(String id) {
+    return userRepository.getReferenceById(id);
   }
 }

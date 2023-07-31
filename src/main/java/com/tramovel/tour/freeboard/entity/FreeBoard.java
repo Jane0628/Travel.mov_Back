@@ -1,6 +1,7 @@
 package com.tramovel.tour.freeboard.entity;
 
 import com.tramovel.tour.hotel.entity.Hotel;
+import com.tramovel.tour.user.entity.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
-@ToString(exclude = {"hotel","userNick"})
+@ToString(exclude = {"hotel","user"})
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor @AllArgsConstructor
 @Builder
@@ -34,8 +35,9 @@ public class FreeBoard {
   @Column
   private String content; //내용
 
-  @Column
-  private String userNick; //작성자
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user; //작성자
 
   @Column
   private int star; //별점

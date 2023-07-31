@@ -2,7 +2,7 @@ package com.tramovel.tour.freeboard.dto;
 
 import com.tramovel.tour.freeboard.entity.FreeBoard;
 import com.tramovel.tour.hotel.entity.Hotel;
-import com.tramovel.tour.reservation.entity.Reservation;
+import com.tramovel.tour.user.entity.User;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -20,7 +20,7 @@ public class FreeBoardDetailDTO {
   private String movie;
   private String title;
   private String content;
-  private String userNick;
+  private User user;
   private Hotel hotel;
   private int star;
   private LocalDateTime uploadDate;
@@ -30,7 +30,7 @@ public class FreeBoardDetailDTO {
     this.movie = freeBoard.getMovie();
     this.title = freeBoard.getTitle();
     this.content = freeBoard.getContent();
-    this.userNick = freeBoard.getUserNick();
+    this.user = freeBoard.getUser();
     this.hotel = freeBoard.getHotel();
     this.star = freeBoard.getStar();
     this.uploadDate = freeBoard.getUploadDate();
