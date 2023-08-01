@@ -35,7 +35,7 @@ public class FreeBoard {
   @Column
   private String content; //내용
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id")
   private User user; //작성자
 

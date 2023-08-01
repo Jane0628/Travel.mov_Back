@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,8 @@ public class CouponService {
   }
 
   public CouponListDTO getCouponList(String userId) {
-     List<Coupon> couponList = couponRepository.findAllByUserId(userId);
+    endCoupon(); // 만료된 쿠폰 삭제
+    List<Coupon> couponList = couponRepository.findAllByUserId(userId);
     List<CouponDTO> dtoList = couponList.stream().map(CouponDTO::new)
       .collect(Collectors.toList());
     return CouponListDTO.builder().couponList(dtoList).build();
@@ -38,5 +40,14 @@ public class CouponService {
 
   public void useCoupon(String couponId) {
     couponRepository.deleteById(couponId);
+  }
+
+  public void endCoupon() {
+    List<Coupon> couponList = couponRepository.findAll();
+    for (Coupon coupon : couponList) {
+      if(coupon.getEndDate().isBefore(LocalDateTime.now())) {//만료일이 지났을 경우
+        couponRepository.delete(coupon);
+      }
+    }
   }
 }
