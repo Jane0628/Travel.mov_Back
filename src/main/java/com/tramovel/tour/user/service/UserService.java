@@ -1,6 +1,7 @@
 package com.tramovel.tour.user.service;
 
 import com.tramovel.tour.auth.TokenProvider;
+import com.tramovel.tour.aws.S3Service;
 import com.tramovel.tour.user.dto.request.UserDeleteRequestDTO;
 import com.tramovel.tour.user.dto.request.UserLoginRequestDTO;
 import com.tramovel.tour.user.dto.request.UserModifyRequestDTO;
@@ -27,6 +28,7 @@ public class UserService {
   private final UserRepository userRepository;
   private final PasswordEncoder encoder;
   private final TokenProvider tokenProvider;
+  private final S3Service s3Service;
 
   @Value("${upload.path}")
   private String uploadRootPath;
@@ -52,17 +54,20 @@ public class UserService {
     // 파일명을 유니크하게 변경
     String uuid = UUID.randomUUID() + "_" + file.getOriginalFilename();
 
-    File uploadFile = new File(uploadRootPath + "/" + uuid);
-    file.transferTo(uploadFile);
+//    File uploadFile = new File(uploadRootPath + "/" + uuid);
+//    file.transferTo(uploadFile);
 
-    return uuid;
+    //파일을 s3 버킷에 저장
+    String uploadUrl = s3Service.uploadToS3Bucket(file.getBytes(), uuid);
+
+    return uploadUrl;
   }
   public String findProfilePath(String getId) {
     User user = userRepository.findById(getId)
       .orElseThrow();
     System.out.println("user.getProfileImg() = " + user.getProfileImg());
-        return uploadRootPath + "/" + user.getProfileImg();
-//    return user.getProfileImg();
+//        return uploadRootPath + "/" + user.getProfileImg();
+    return user.getProfileImg();
   }
   //회원 인증
   public UserLoginResponseDTO authenticate(final UserLoginRequestDTO dto) {
@@ -108,7 +113,6 @@ public class UserService {
     }
 
     //회원 정보 수정
-    dto.setPw(encoder.encode(dto.getPw()));
     user.setNick(dto.getNick());
     user.setEmail(dto.getEmail());
     user.setProfileImg(profileImg);

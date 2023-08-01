@@ -131,6 +131,8 @@ public class UserController {
     @RequestPart(value = "profileImage", required = false) MultipartFile profileImg,
     BindingResult result
   ) {
+    System.out.println("dto = " + dto);
+    System.out.println("profileImg = " + profileImg);
     if(result.hasErrors()) { // 입력값 검증에 걸림
       List<FieldError> fieldErrors = result.getFieldErrors();
       fieldErrors.forEach(err -> {
@@ -235,5 +237,21 @@ public class UserController {
         return null;
     }
 
+  }
+
+  //S3에서 불러온 프로필 사진 처리
+  @GetMapping("/load-s3")
+  public ResponseEntity<?> loadS3(
+    @AuthenticationPrincipal TokenUserInfo userInfo
+  ) {
+    log.info("/api/auth/load-s3 GET - user : {}" , userInfo);
+
+    try {
+      String profilePath = userService.findProfilePath(userInfo.getId());
+      return ResponseEntity.ok().body(profilePath);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
   }
 }
