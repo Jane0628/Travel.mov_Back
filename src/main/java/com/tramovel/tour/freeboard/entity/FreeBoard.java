@@ -25,7 +25,7 @@ public class FreeBoard {
   @Column
   private String movie; //영화 이름
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "hotel_id")
   private Hotel hotel;//호텔
 
@@ -35,7 +35,7 @@ public class FreeBoard {
   @Column
   private String content; //내용
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   private User user; //작성자
 

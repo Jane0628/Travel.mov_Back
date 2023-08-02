@@ -54,7 +54,12 @@ public class HotelController {
   @GetMapping("/name/{name}") // 호텔 이름으로 호텔 검색
   public ResponseEntity<?> getHotelByName(@PathVariable("name") String name) {
     System.out.println("name = " + name);
-    return ResponseEntity.ok().body(hotelService.getHotelByName(name));
+    try {
+      return ResponseEntity.ok().body(hotelService.getHotelByName(name));
+    } catch (Exception e) {
+      e.printStackTrace();
+      return ResponseEntity.badRequest().body("등록된 호텔이 없습니다.");
+    }
 
   }
 }
