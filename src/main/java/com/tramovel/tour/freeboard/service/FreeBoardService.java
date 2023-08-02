@@ -83,4 +83,11 @@ public class FreeBoardService {
   public User getUser(String id) {
     return userRepository.getReferenceById(id);
   }
+
+  public FreeBoardListDTO getAll() {
+    List<FreeBoard> freeBoardList = freeBoardRepository.findAll();
+    List<FreeBoardDetailDTO> dtoList = freeBoardList.stream().map(FreeBoardDetailDTO::new)
+      .collect(Collectors.toList());
+    return FreeBoardListDTO.builder().freeBoards(dtoList).build();
+  }
 }
