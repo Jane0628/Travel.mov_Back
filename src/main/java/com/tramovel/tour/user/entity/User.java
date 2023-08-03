@@ -34,8 +34,7 @@ public class User {
   @CreationTimestamp
   private LocalDateTime joinDate;
 
-  @Builder.Default
-  private String profileImg =  "../../img/profileImage.png";
+  private String profileImg;
 
   @Builder.Default
   private String role = "일반회원";
