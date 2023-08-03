@@ -56,4 +56,16 @@ public class FreeBoardController {
     }
     return ResponseEntity.ok().body("삭제가 완료되었습니다.");
   }
+
+  @GetMapping
+  public ResponseEntity<?> getAll() {
+    log.info("getAll");
+    try {
+      FreeBoardListDTO freeBoardDTOS = freeBoardService.getAll();
+      return ResponseEntity.ok().body(freeBoardDTOS);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return ResponseEntity.badRequest().body("후기가 없습니다.");
+    }
+  }
 }
