@@ -118,8 +118,8 @@ VALUES
 -- 유저
 INSERT INTO user (`user_id`, `email`, `join_date`, `user_nick`, `profile_img`, `user_pw`, `role`)
 VALUES
-('qwe123', 'qwer123@naver.com', '2023-08-02 17:58:53.153902', '은하', 'https://tramovel.com.s3.ap-northeast-2.amazonaws.com/d6236990-ef67-48c0-925c-552124adb394_90768cca-d654-4712-8b48-aefffe9db159_9454b5054aba3713%2B%281%29.png', '$2a$10$SAP/7Ks8V1wf3oHbZeabT.dzSpoavmhji2y0iO15geCh.tObUhJQ.', '관리자'),
-('abcd', 'abc123@naver.com', '2023-08-01 17:58:53.153902', '관리자', 'https://tramovel.com.s3.ap-northeast-2.amazonaws.com/812a6771-c57c-4080-bd55-26836178737d_KakaoTalk_20230613_142833179.jpg', '$2a$10$1eagcLpCWXrUJ1xd4ompM.UKkVYcM/WPqzgMP8I.75hTym49tt8fW', '관리자');
+('qwe123', 'qwer123@naver.com', '2023-08-02 17:58:53.153902', '은하', 'https://s3.ap-northeast-2.amazonaws.com/tramovel.com/d6236990-ef67-48c0-925c-552124adb394_90768cca-d654-4712-8b48-aefffe9db159_9454b5054aba3713%2B(1).png', '$2a$10$SAP/7Ks8V1wf3oHbZeabT.dzSpoavmhji2y0iO15geCh.tObUhJQ.', '관리자'),
+('abcd', 'abc123@naver.com', '2023-08-01 17:58:53.153902', '관리자', 'https://s3.ap-northeast-2.amazonaws.com/tramovel.com/812a6771-c57c-4080-bd55-26836178737d_KakaoTalk_20230613_142833179.jpg', '관리자');
 
 
 
