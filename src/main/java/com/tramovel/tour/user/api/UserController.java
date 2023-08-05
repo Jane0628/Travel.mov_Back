@@ -28,6 +28,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 @Slf4j
 public class UserController {
 
