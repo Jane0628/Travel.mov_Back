@@ -8,12 +8,9 @@ import com.tramovel.tour.kapi.service.KakaoPayService;
 import com.tramovel.tour.reservation.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.time.LocalDateTime;
 
 @Slf4j
 @RestController
@@ -48,7 +45,7 @@ public class KakaoPayController {
     if(couponId != null ) couponService.useCoupon(couponId);
     System.out.println("kakaoApprove = " + kakaoApprove);
     RedirectView redirectView = new RedirectView();
-    redirectView.setUrl("http://tramovel.com/reservationCheck");
+    redirectView.setUrl("http://tramovel.com");
 
     return redirectView;
   }
@@ -56,13 +53,13 @@ public class KakaoPayController {
   @GetMapping("/cancel")
   public RedirectView cancel() {
     RedirectView redirectView = new RedirectView();
-    redirectView.setUrl("http://tramovel.com/hotels");
+    redirectView.setUrl("http://tramovel.com");
     return redirectView;
   }
   @GetMapping("/fail")
   public RedirectView fail() {
     RedirectView redirectView = new RedirectView();
-    redirectView.setUrl("http://tramovel.com/hotels");
+    redirectView.setUrl("http://tramovel.com");
     return redirectView;
   }
 }
