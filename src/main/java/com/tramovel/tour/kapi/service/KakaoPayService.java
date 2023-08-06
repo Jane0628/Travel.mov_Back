@@ -40,9 +40,9 @@ public class KakaoPayService {
     parameters.add("total_amount", requestDTO.getTotalAmount());
     parameters.add("vat_amount", requestDTO.getVatAmount());
     parameters.add("tax_free_amount", requestDTO.getTaxFreeAmount());
-    parameters.add("approval_url", "http://localhost:8181/pay/success"); // 성공 시 redirect url
-    parameters.add("cancel_url", "http://localhost:8181/pay/cancel"); // 취소 시 redirect url
-    parameters.add("fail_url", "http://localhost:8181/pay/fail"); // 실패 시 redirect url
+    parameters.add("approval_url", "http://13.209.179.148/pay/success"); // 성공 시 redirect url
+    parameters.add("cancel_url", "http://13.209.179.148/pay/cancel"); // 취소 시 redirect url
+    parameters.add("fail_url", "http://13.209.179.148/pay/fail"); // 실패 시 redirect url
     ptId = requestDTO.getPartnerOrderId();
     usId = requestDTO.getPartnerUserId();
 

@@ -48,19 +48,21 @@ public class KakaoPayController {
     if(couponId != null ) couponService.useCoupon(couponId);
     System.out.println("kakaoApprove = " + kakaoApprove);
     RedirectView redirectView = new RedirectView();
-    redirectView.setUrl("http://localhost:3000/reservationCheck");
+    redirectView.setUrl("http://tramovel.com/reservationCheck");
 
     return redirectView;
   }
 
   @GetMapping("/cancel")
-  public ResponseEntity cancel() {
-
-    return ResponseEntity.badRequest().body("결제가 취소되었습니다.");
+  public RedirectView cancel() {
+    RedirectView redirectView = new RedirectView();
+    redirectView.setUrl("http://tramovel.com/hotels");
+    return redirectView;
   }
   @GetMapping("/fail")
-  public ResponseEntity fail() {
-
-    return ResponseEntity.badRequest().body("결제 실패.");
+  public RedirectView fail() {
+    RedirectView redirectView = new RedirectView();
+    redirectView.setUrl("http://tramovel.com/hotels");
+    return redirectView;
   }
 }
